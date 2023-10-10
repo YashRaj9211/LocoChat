@@ -1,0 +1,26 @@
+
+  
+  /* Create a container div that centers its content */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set the container height to the viewport height for full-screen effect */
+  }
+  
+  /* Style the centered button */
+  .centered-button {
+    background-color: #007bff; /* Blue color for the button */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease; /* Add a smooth transition effect */
+  
+    &:hover {
+      background-color: #0056b3; /* Darker blue color on hover */
+    }
+  }
+  
