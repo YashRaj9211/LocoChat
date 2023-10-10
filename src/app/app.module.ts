@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -40,6 +41,7 @@ import { NearByUsersComponent } from './components/near-by-users/near-by-users.c
     NearByUsersComponent,
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),

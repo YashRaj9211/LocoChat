@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class HomepageComponent {
   lat: number | undefined;
   lon: number | undefined;
+  userInput: string = '';
 
   constructor(
     private geolocationService: GeolocationService,
@@ -19,6 +20,10 @@ export class HomepageComponent {
   ){}
 
   getCoordinates(): void {
+    if (this.userInput.trim() === '') {
+      alert('Input is empty');
+      return
+    }
     console.log("User ID "+this.authService.userData.uid)
     
     this.geolocationService.getCurrentCoordinates((coordinates) => {
@@ -28,7 +33,7 @@ export class HomepageComponent {
         console.log('Latitude: ' + coordinates.latitude);
         console.log('Longitude: ' + coordinates.longitude);
 
-        alert("Your coordinates:"+ this.lat +"\t"+ this.lon);
+        // alert("Your coordinates:"+ this.lat +"\t"+ this.lon);
 
         const userData = {
           userId: this.authService.userData.uid,

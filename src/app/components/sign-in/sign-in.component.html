@@ -1,54 +1,60 @@
-<div class="displayTable">
-  <div class="displayTableCell">
-    <div class="authBlock">
-      <h3>Sign In</h3>
-      <div class="formGroup">
-        <input
-          type="text"
-          class="formControl"
-          placeholder="Username"
-          #userName
-          required
-        />
+<div class="flex items-center justify-center h-screen">
+  <div class="max-w-md w-full space-y-4 items-center">
+    <h3 class="text-2xl font-semibold text-center">Sign In</h3>
+
+    <div class="space-y-4 text-center items-center">
+      <div class="form-control w-fit mx-auto">
+        <label class="label">
+          <span class="label-text">Your Email</span>
+        </label>
+        <label class="input-group">
+          <span class="w-32">Email</span>
+          <input
+            type="email"
+            placeholder="Username"
+            #userName
+            required
+            class="input input-bordered"
+          />
+        </label>
       </div>
 
-      <div class="formGroup">
-        <input
-          type="password"
-          class="formControl"
-          placeholder="Password"
-          #userPassword
-          required
-        />
+      <div class="form-control w-fit mx-auto">
+        <label class="label">
+          <span class="label-text">Your Password</span>
+        </label>
+        <label class="input-group">
+          <span class="w-32">Password</span>
+          <input
+            type="password"
+            placeholder="Password"
+            #userPassword
+            required
+            class="input input-bordered"
+          />
+        </label>
       </div>
 
-      <!-- Calling SignIn Api from AuthService -->
-      <div class="formGroup">
-        <input
-          type="button"
-          class="btn btnPrimary"
-          value="Log in"
-          (click)="authService.SignIn(userName.value, userPassword.value)"
-        />
-      </div>
+      <button
+        class="btn btn-wid btn-outline btn-success"
+        (click)="authService.SignIn(userName.value, userPassword.value)"
+      >
+        Log in
+      </button>
 
-      <div class="formGroup">
-        <span class="or"><span class="orInner">Or</span></span>
-      </div>
+      <div class="text-center text-gray-500">Or</div>
 
-      <div class="forgotPassword">
-        <span routerLink="/forgot-password">Forgot Password?</span>
+      <div class="text-center">
+        <a class="text-success hover:underline" routerLink="/forgot-password"
+          >Forgot Password?</a
+        >
       </div>
     </div>
 
-    <div class="redirectToLogin">
-      <span
-        >Don't have an account?<span
-          class="redirect"
-          routerLink="/register-user"
-        >
-          Sign Up</span
-        ></span
+    <div class="text-center text-gray-500">
+      Don't have an account?
+      <a class="text-success hover:underline" routerLink="/register-user"
+        >Sign Up</a
       >
     </div>
   </div>
