@@ -26,6 +26,7 @@ import { AppRoutingModule } from './app-routing.module';
 // service
 import { AuthService } from './shared/services/auth.service';
 import { NearByUsersComponent } from './components/near-by-users/near-by-users.component';
+import { ActiveUsersComponent } from './components/active-users/active-users.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { NearByUsersComponent } from './components/near-by-users/near-by-users.c
     HomepageComponent,
     NavbarComponent,
     NearByUsersComponent,
+    ActiveUsersComponent,
   ],
   imports: [
     FormsModule,

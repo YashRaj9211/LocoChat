@@ -9,15 +9,17 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 // route guard
 import { AuthGuard } from './shared/guard/auth.guard';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { ActiveUsersComponent } from './components/active-users/active-users.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
+  { path: 'home', component: HomepageComponent, canActivate: [AuthGuard]},
   { path: 'sign-in', component: SignInComponent },
   { path: 'register-user', component: SignUpComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'verify-email-address', component: VerifyEmailComponent },
-  { path: 'home', component: HomepageComponent, canActivate: [AuthGuard]}
+  { path: 'active-users', component: ActiveUsersComponent },
 ];
 
 @NgModule({

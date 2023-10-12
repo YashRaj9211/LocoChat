@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { GeolocationService } from 'src/app/shared/services/connect-user.service';
+import { GeolocationService } from 'src/app/shared/api/connect-user.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { ApiService } from 'src/app/shared/api/api.service';
+import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-homepage',
@@ -17,7 +19,9 @@ export class HomepageComponent {
   constructor(
     private geolocationService: GeolocationService,
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private apiService: ApiService,
+    private localStore: LocalStorageService
   ) {}
 
   async getCoordinates(): Promise<void> {
@@ -41,6 +45,7 @@ export class HomepageComponent {
           }
         });
       });
+      this.localStore.setItem('userLocation', [this.lon, this.lat]);
       this.sendData();
     } catch (error) {
       console.log('Error:', error);
@@ -56,31 +61,29 @@ export class HomepageComponent {
       coordinates: [this.lon, this.lat], // Replace with actual coordinates
     };
 
-    const userData =  {
+    const userData = {
       userId: this.authService.userData.uid,
       userName: this.userName,
       userLocation: userLocation,
     };
 
-     this.http
-      .post('http://localhost:3000/api/activeUsers', userData)
-      .subscribe(
-        (response) => {
-          console.log(response);
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    this.apiService.postUserData(userData).subscribe(
+      //sending user data to active user route
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
 
-      const url = `http://localhost:3000/api/activeUsers/nearby?longitude=${this.lon}&latitude=${this.lat}`;
-     
+    // const url = `http://localhost:3000/api/activeUsers/nearby?longitude=${this.lon}&latitude=${this.lat}`;
 
-    this.http
-      .get(url)
-      .subscribe((data: any) => {
-        this.activeUsersList = data;
-        console.log('Active Users List: ' + this.activeUsersList);
-      });
+    // this.apiService
+    //   .getNearbyUsers(this.lon, this.lat)
+    //   .subscribe((data: any) => {
+    //     this.activeUsersList = data;
+    //     console.log('Active Users List: ' + this.activeUsersList);
+    //   });
   }
 }
