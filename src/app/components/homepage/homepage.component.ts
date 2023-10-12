@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { GeolocationService } from 'src/app/shared/api/connect-user.service';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { ApiService } from 'src/app/shared/api/api.service';
@@ -17,9 +18,10 @@ export class HomepageComponent {
   activeUsersList: any[] = [];
 
   constructor(
+    private http: HttpClient,
+    private router: Router,
     private geolocationService: GeolocationService,
     private authService: AuthService,
-    private http: HttpClient,
     private apiService: ApiService,
     private localStore: LocalStorageService
   ) {}
@@ -76,6 +78,8 @@ export class HomepageComponent {
         console.log(error);
       }
     );
+
+    this.router.navigate(['/active-users'])
 
     // const url = `http://localhost:3000/api/activeUsers/nearby?longitude=${this.lon}&latitude=${this.lat}`;
 
