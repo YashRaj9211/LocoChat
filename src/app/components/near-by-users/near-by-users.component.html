@@ -1,20 +1,24 @@
-<div class="stats bg-primary text-primary-content m-4" *ngFor="let user of activeUserlist">
-  
-    <div class="stat">
-      <div class="stat-title">{{user.userName}}</div>
-      <div class="stat-value">$89,400</div>
-      <div class="stat-actions">
-        <button class="btn btn-sm btn-success">Add funds</button>
+<div
+  class="stats bg-primary text-primary-content m-4 max-w-xs w-80 h-28 overflow-hidden"
+  *ngFor="let user of activeUserlist"
+>
+  <div class="stat">
+    <div class="stat-title font-bold">{{ user.userName }}</div>
+    <!-- <progress class="progress progress-accent w-fit" value="{{user.distance}}" max="100"></progress> -->
+    <!-- <div>{{user.distance.toString().substring(0,5)}}  -->
+      <div>
+        <ng-container *ngIf="user.distance <= 1000; else kmDisplay">
+          {{ user.distance.toFixed(0) }} m
+        </ng-container>
+        <ng-template #kmDisplay>
+          {{ (user.distance / 1000).toFixed(1) }} km
+        </ng-template>
       </div>
-    </div>
-    
-    <div class="stat">
-      <div class="stat-title">Current balance</div>
-      <div class="stat-value">$89,400</div>
-      <div class="stat-actions">
-        <button class="btn btn-sm">Withdrawal</button> 
-        <button class="btn btn-sm">deposit</button>
-      </div>
-    </div>
-    
+    <!-- </div> -->
   </div>
+  <div class="stat">
+    <div class="stat-actions">
+      <button class="btn btn-sm btn-success p-2 text-center">chat</button>
+    </div>
+  </div>
+</div>

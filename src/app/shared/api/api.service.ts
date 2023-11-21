@@ -15,7 +15,18 @@ export class ApiService {
 
   getNearbyUsers(longitude: any, latitude: any) {
     const url = `${this.baseUrl}/activeUsers/nearby?longitude=${longitude}&latitude=${latitude}`;
+    // console.log(url);
     return this.http.get(url);
+  }
+
+  addUser(userData: any){
+    return this.http.post(`${this.baseUrl}/users/addUser`, userData).subscribe(
+      (response) => {
+        console.log(response);
+      },(error)=>{
+        console.log(error);
+      }
+    )
   }
 
   

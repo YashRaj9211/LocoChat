@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';  
 import { ApiService } from 'src/app/shared/api/api.service';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
@@ -16,6 +16,7 @@ export class ActiveUsersComponent {
   activeUsersJSON: any;
   ngOnInit() {
     const userlocation = this.locaStore.getItem('userLocation');
+    console.log(userlocation);
     console.log('From active user' + userlocation[0]);
     this.apiService
       .getNearbyUsers(userlocation[0], userlocation[1])

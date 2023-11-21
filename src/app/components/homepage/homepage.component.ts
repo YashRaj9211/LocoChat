@@ -18,7 +18,6 @@ export class HomepageComponent {
   activeUsersList: any[] = [];
 
   constructor(
-    private http: HttpClient,
     private router: Router,
     private geolocationService: GeolocationService,
     private authService: AuthService,
@@ -31,6 +30,13 @@ export class HomepageComponent {
       alert('Input is empty');
       return;
     }
+    
+    if (this.userName.trim().length > 12) {
+      alert('Username is more than 12 characters long');
+      return;
+    }
+
+    this.userName = this.userName.trim();  //removing any space in betweeen   
 
     try {
       const coordinates = await new Promise((resolve, reject) => {
@@ -60,7 +66,7 @@ export class HomepageComponent {
 
     const userLocation = {
       type: 'Point',
-      coordinates: [this.lon, this.lat], // Replace with actual coordinates
+      coordinates: [this.lon, this.lat],
     };
 
     const userData = {
