@@ -1,0 +1,21 @@
+<div
+  class="bg-transparent w-96 p-4 shadow-md hover:scale-105 duration-300 cursor-pointer"
+  *ngFor="let user of activeUserlist"
+>
+  <div class="flex items-center space-x-2 mb-4">
+    <div class="h-16 w-16 bg-gray-300 rounded-full"></div>
+    <div>
+      <div class="font-semibold text-lg">{{ user.userName }}</div>
+      <div class="text-gray-500 text-sm">
+        <div>
+          <ng-container *ngIf="user.distance <= 1000; else kmDisplay">
+            {{ user.distance.toFixed(0) }} m
+          </ng-container>
+          <ng-template #kmDisplay>
+            {{ (user.distance / 1000).toFixed(1) }} km
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
